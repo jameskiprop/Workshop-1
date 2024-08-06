@@ -3,10 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Workshop</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>Dep with App</title>
   </head>
-  <body class="bg-yellow-400">
-    <h1 class="text-black text-5xl">Workshop group 1</h1>
+  <body
+    class="bg-gray-100 min-h-screen flex flex-col items-center justify-center"
+  >
+    <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
+      <h1 class="text-2xl font-bold mb-4 text-center">Depwith App</h1>
+      <div class="text-center mb-6">
+        <p class="text-xl">
+          Account Balance:
+          <span class="font-semibold">kshs<span id="balance"  >0.00</span></span>
+        </p>
+      </div>
+      <form class="mb-6">
+        <div class="mb-4">
+          <input
+            type="number"
+            id="amount"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline "
+            placeholder="0"
+          />
+        </div>
+        <div class="flex justify-between">
+          <button
+            type="button"
+            id="depositBtn"
+            class="bg-green-900 hover:bg-green-600 text-white font-bold py-2 px-5 rounded focus:outline-none focus:shadow-outline alig"
+          >
+            Deposit
+          </button>
+          <button
+            type="button"
+            id="withdrawBtn"
+            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Withdraw
+          </button>
+        </div>
+      </form>
+      <h2 class="text-xl font-bold mb-4 text-center">Transactions</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-white bg-black">
+          <thead>
+            <tr>
+              <th class="px-4 py-2 border">Type</th>
+              <th class="px-4 py-2 border">Amount</th>
+              <th class="px-4 py-2 border">Date</th>
+            </tr>
+          </thead>
+          <tbody id="transactionTable">
+            <!-- Transactions will be dynamically added here -->
+          </tbody>
+        </table>
+        <table class="min-w-full ">
+          <thead>
+            <tr>
+              <th id="type" class="px-4 py-2 border">#</th>
+              <th id="amount" class="px-4 py-2 border">#</th>
+              <th id="date" class="px-4 py-2 border">#</th>
+            </tr>
+          </thead>
+          <tbody id="transactionTable">
+        
+      </div>
+    </div>
+    <source src="../java.js"></source>
   </body>
 </html>
