@@ -1,25 +1,28 @@
-// // balance accessing
-// const newamount = document.getElementById ('balance');
+// Accessing the balance element
+const newamount = document.getElementById("balance");
 
-// // initial balance  to number
-// var balance = number.(document.getElementById('amount'));
-// //  reference to buttons
-// const Depositbutton = document.getElementById('depositBtn');
-// const withdrawlbutton = document.getElementById('withdrawBtn');
-// // Event listener for deposit button
-// Depositbutton.addEventListener('click',depositmoney);
+// initial balance  to number
+let balance = 0;
+//  adding references to buttons
+const depositButton = document.getElementById("depositBtn");
+const withdrawlbutton = document.getElementById("withdrawBtn");
 
-// // function for depositing money
-// function depositmoney(){
-//  balance += newamount;
-//  document.getElementById('balance').value =balance;
-// }
+// adding event listeners to the button
+depositButton.addEventListener("click", depositMoney);
+withdrawlbutton.addEventListener("click", withdrawMoney);
+// writing a function to get the input number
 
-// Deposit button event handler
-const Depositbutton = document.getElementById("depositBtn");
-Depositbutton.addEventListener("click", function () {
+// function for depositing money to handle the deposit action
+
+//function to withdraw money to handle the withdraw action
+
+//function to update the balance on the screen to update the balance on the screen
+
+/* Deposit button event handler
+const depositButton = document.getElementById("depositBtn");
+depositButton.addEventListener("click", function () {
   const depositStringToInt = getInputNumb("amount");
 
   updateSpanTest("balance", depositStringToInt);
   updateSpanTest("balance", depositStringToInt);
-});
+}); */
