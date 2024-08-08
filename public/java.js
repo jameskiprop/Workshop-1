@@ -1,66 +1,88 @@
-/* Deposit button event handler
-const depositButton = document.getElementById("depositBtn");
-depositButton.addEventListener("click", function () {
-  const depositStringToInt = getInputNumb("amount");
-
-  updateSpanTest("balance", depositStringToInt);
-  updateSpanTest("balance", depositStringToInt);
-}); */
-
 // Accessing the balance element
-const newamount = document.getElementById("balance");
+const newAmount = document.getElementById("balance");
 
-// initial balance to number
+// Initial balance to number
 let balance = 0;
-//  adding references to buttons
+
+// Adding references to buttons
 const depositButton = document.getElementById("depositBtn");
-const withdrawlbutton = document.getElementById("withdrawBtn");
+const withdrawButton = document.getElementById("withdrawBtn");
 
-// adding event listeners to the button
+// Adding event listeners to the buttons
 depositButton.addEventListener("click", depositMoney);
-withdrawlbutton.addEventListener("click", withdrawMoney);
+withdrawButton.addEventListener("click", withdrawMoney);
 
-// writing a function to get the input number
+// Writing a function to get the input number
 function getInputNumber() {
   const input = document.getElementById("amount").value;
   return parseFloat(input);
 }
 
-// function for depositing money to handle the deposit action
+// Function for depositing money to handle the deposit action
 function depositMoney() {
   const depositAmount = getInputNumber();
   if (isNaN(depositAmount) || depositAmount <= 0) {
     console.error("Invalid deposit amount");
     return;
   }
-  balance += depositAmount; // incrementing the value
+  balance += depositAmount; // Updating the balance
   console.log(`New Balance: ${balance}`);
-  newamount.textContent = `Balance: $${balance.toFixed(2)}`;
+  newAmount.textContent = `${balance.toFixed(2)}`;
+
+  // Creating and adding the transaction entry
+  const transaction = createTransactionEntry("Deposit", depositAmount);
+  updateTransactionTable(transaction);
 }
 
-//function to withdraw money to handle the withdraw action
+// Function to withdraw money to handle the withdraw action
 function withdrawMoney() {
   const withdrawAmount = getInputNumber();
   if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
-    console.error("error");
+    console.error("Invalid withdrawal amount");
     return;
   }
-  balance -= withdrawAmount;
+  if (withdrawAmount > balance) {
+    console.error("Insufficient balance");
+    return;
+  }
+  balance -= withdrawAmount; // Updating the balance
   console.log(`New Balance: ${balance}`);
-  newamount.textContent = `Balance: $${balance.toFixed(2)}`;
+  newAmount.textContent = `${balance.toFixed(2)}`;
+
+  // Creating and adding the transaction entry
+  const transaction = createTransactionEntry("Withdraw", withdrawAmount);
+  updateTransactionTable(transaction);
 }
-//function to update the balance on the screen to update the balance on the screen
 
-//Table
-//Select elements from the DOM using its ID and assigning them to variables
-const withdraw = document.querySelector("#withdrawBtn");
-const deposit = document.querySelector("#depositBtn");
-const amount = document.querySelector("#amount");
-const remainder = document.querySelector("#balance");
+// Function for validating the input
+function validateInput(depositAmount, withdrawAmount) {
+  if (isNaN(depositAmount) || depositAmount > 10000000) {
+    console.error("Invalid deposit amount");
+    return;
+  }
+  if (isNaN(withdrawAmount) || withdrawAmount < 20) {
+    console.error("Invalid withdrawal amount");
+    return false;
+  }
+  return true;
+}
 
-//Adding eventlisteners to handle the withdraw and deposit actions
+// Function for creating the transaction entry
+function createTransactionEntry(type, amount) {
+  const date =
+    new Date().toLocaleString(); /*new Date()=>creates a new Date object that represents the current date and time*/
+  /*toLocaleString => converts the Date object into a string that represents the date and time*/
+  return { type, amount, date };
+}
 
-deposit.addEventListener("click", depositCash);
-withdraw.addEventListener("click", withdrawCash);
-
-//function to deposit cash
+// Function for updating the transaction table
+function updateTransactionTable(transaction) {
+  const tableBody = document.getElementById("transactionTable");
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td class="px-4 py-2 border">${transaction.type}</td>
+    <td class="px-4 py-2 border">${transaction.amount.toFixed(2)}</td>
+    <td class="px-4 py-2 border">${transaction.date}</td>
+  `;
+  tableBody.appendChild(row);
+}
