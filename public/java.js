@@ -1,10 +1,10 @@
 // Accessing the balance element
 const newAmount = document.getElementById("balance");
 
-// Initial balance to number
+// Initial balance of the account
 let balance = 0;
 
-// Adding references to buttons
+// accessing the deposit and withdraw buttons
 const depositButton = document.getElementById("depositBtn");
 const withdrawButton = document.getElementById("withdrawBtn");
 
@@ -22,7 +22,7 @@ function getInputNumber() {
 function depositMoney() {
   const depositAmount = getInputNumber();
   if (isNaN(depositAmount) || depositAmount <= 0) {
-    console.error("Invalid deposit amount");
+    alert("Invalid deposit amount");
     return;
   }
   balance += depositAmount; // Updating the balance
@@ -34,15 +34,15 @@ function depositMoney() {
   updateTransactionTable(transaction);
 }
 
-// Function to withdraw money to handle the withdraw action
+// withdraw money function to handle the withdraw action
 function withdrawMoney() {
   const withdrawAmount = getInputNumber();
   if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
-    console.error("Invalid withdrawal amount");
+    alert("Invalid withdrawal amount");
     return;
   }
   if (withdrawAmount > balance) {
-    console.error("Insufficient balance");
+    alert("Insufficient balance");
     return;
   }
   balance -= withdrawAmount; // Updating the balance
@@ -57,14 +57,13 @@ function withdrawMoney() {
 // Function for validating the input
 function validateInput(depositAmount, withdrawAmount) {
   if (isNaN(depositAmount) || depositAmount > 10000000) {
-    console.error("Invalid deposit amount");
+    alert("Invalid deposit amount");
     return;
   }
   if (isNaN(withdrawAmount) || withdrawAmount < 20) {
-    console.error("Invalid withdrawal amount");
+    alert("Invalid withdrawal amount");
     return false;
   }
-  return true;
 }
 
 // Function for creating the transaction entry
@@ -86,3 +85,25 @@ function updateTransactionTable(transaction) {
   `;
   tableBody.appendChild(row);
 }
+
+/**Table
+//Select elements from the DOM using its ID and assigning them to variables
+
+const deposit = document.querySelector("#depositBtn");
+const amount = document.querySelector("#amount");
+const remainder = document.querySelector("#balance");
+
+//Adding eventlisteners to handle the withdraw and deposit actions
+
+deposit.addEventListener("click", depositCash);
+withdraw.addEventListener("click", withdrawCash);
+//function to deposit cash */
+
+/* Deposit button event handler
+const depositButton = document.getElementById("depositBtn");
+depositButton.addEventListener("click", function () {
+  const depositStringToInt = getInputNumb("amount");
+
+  updateSpanTest("balance", depositStringToInt);
+  updateSpanTest("balance", depositStringToInt);
+}); */
